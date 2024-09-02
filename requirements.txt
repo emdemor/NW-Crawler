@@ -1,0 +1,9 @@
+pandas
+numpy
+scipy
+beautifulsoup4==4.12.3
+unstructured==0.15.9
+pydantic==2.8.2
+pydantic-settings==2.4.0
+loguru
+typer

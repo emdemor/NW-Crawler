@@ -1,0 +1,2 @@
+class DuplicateArticleError(Exception):
+    pass

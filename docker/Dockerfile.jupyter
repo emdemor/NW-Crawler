@@ -1,0 +1,34 @@
+FROM jupyter/minimal-notebook
+
+WORKDIR /app
+
+ENV PIP_DISABLE_PIP_VERSION_CHECK=on
+
+# Instaling playwright
+USER root
+RUN pip install playwright==1.46.0
+RUN playwright install
+RUN playwright install-deps
+USER jovyan
+
+COPY ./requirements.txt ./
+RUN pip install -r requirements.txt
+
+
+COPY ./src ./src
+COPY ./notebooks ./notebooks
+COPY ./README.md ./
+COPY ./LICENSE.txt ./
+COPY ./pyproject.toml ./
+
+USER root
+RUN chown -R jovyan:users /app
+USER jovyan
+
+RUN pip install . --no-deps
+
+EXPOSE 8888
+
+VOLUME /app
+
+CMD ["start-notebook.sh", "--NotebookApp.token=''", "--NotebookApp.password=''", "--NotebookApp.default_url='/lab/tree'", "--notebook-dir=/app/notebooks"]
