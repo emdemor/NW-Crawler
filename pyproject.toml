@@ -5,6 +5,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "nwcrawler"
+version = "0.0.1"
 description = ""
 readme = "README.md"
 requires-python = ">=3.10"
@@ -29,7 +30,7 @@ classifiers = [
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3 :: Only",
 ]
-dynamic = ["version", "dependencies"]
+dynamic = ["dependencies"]
 
 
 [project.urls]
@@ -52,7 +53,6 @@ test = [
 
 [tool.setuptools.dynamic]
 dependencies = {file = ["requirements.txt"]}
-version = {attr = "nwcrawler.__version__"}
 
 [project.scripts]
 nwcrawler = "nwcrawler.__main__:app"
